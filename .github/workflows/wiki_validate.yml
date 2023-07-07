@@ -27,7 +27,7 @@ jobs:
       - run: databricks bundle deploy
         working-directory: ./wikipedia_clickstream
         env:
-          DATABRICKS_TOKEN: ${{ secrets.E2_DOGFOOD_SP_TOKEN }}
+          DATABRICKS_TOKEN: ${{ secrets.SP_TOKEN }}
           DATABRICKS_BUNDLE_ENV: qa
 
   pipeline_update:
@@ -45,5 +45,5 @@ jobs:
       - run: databricks bundle run wikipedia_pipeline --refresh-all
         working-directory: ./wikipedia_clickstream
         env:
-          DATABRICKS_TOKEN: ${{ secrets.E2_DOGFOOD_SP_TOKEN }}
+          DATABRICKS_TOKEN: ${{ secrets.SP_TOKEN }}
           DATABRICKS_BUNDLE_ENV: qa
