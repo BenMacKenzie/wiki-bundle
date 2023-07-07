@@ -19,7 +19,7 @@ json_path = "/databricks-datasets/wikipedia-datasets/data-001/clickstream/raw-un
 )
 def clickstream_raw():          
   df = spark.read.option("inferSchema", "true").json(json_path)
-  config_limit = 10_001
+  config_limit = 10_002
   df = df.limit(config_limit)
   # Read only 10k rows during development or validation.
   bundle_environment = spark.conf.get("bundle.environment")
