@@ -9,7 +9,7 @@ bundle:
 #
 
 workspace:
-  host: https://e2-dogfood.staging.cloud.databricks.com/
+  host: https://adb-7674599708099350.10.azuredatabricks.net
 
 environments:
   development:
