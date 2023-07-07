@@ -9,7 +9,7 @@ bundle:
 #
 
 workspace:
-  host: https://adb-7674599708099350.10.azuredatabricks.net
+  host: https://adb-7580217694832751.11.azuredatabricks.net
 
 environments:
   development:
