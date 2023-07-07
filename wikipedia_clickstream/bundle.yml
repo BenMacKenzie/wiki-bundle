@@ -17,7 +17,7 @@ environments:
 
   qa:
     # This environment is when deploying from a pull request on GitHub.
-    workspace:
+    workspace: https://adb-4301376284584187.7.azuredatabricks.net/
 
   production:
     workspace:
