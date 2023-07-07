@@ -24,7 +24,7 @@ jobs:
 
       - uses: databricks/setup-cli@main
 
-      - run: databricks bundle deploy -e qa
+      - run: databricks bundle deploy
         working-directory: ./wikipedia_clickstream
         env:
           DATABRICKS_TOKEN: ${{ secrets.STAGING_DATABRICKS_TOKEN }}
