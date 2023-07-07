@@ -28,6 +28,7 @@ jobs:
         working-directory: ./wikipedia_clickstream
         env:
           DATABRICKS_TOKEN: ${{ secrets.SP_TOKEN }}
+          DATABRICKS_AUTH_TYPE: pat
           DATABRICKS_BUNDLE_ENV: qa
 
   pipeline_update:
