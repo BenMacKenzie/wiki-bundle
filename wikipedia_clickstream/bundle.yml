@@ -1,4 +1,4 @@
-bundle:
+  bundle:
   name: wikipedia_clickstream_dlt
 
 # By default we load files matching these patterns:
@@ -9,7 +9,7 @@ bundle:
 #
 
 workspace:
-  host: https://adb-7580217694832751.11.azuredatabricks.net
+  host: https://adb-7674599708099350.10.azuredatabricks.net
 
 environments:
   development:
@@ -17,7 +17,7 @@ environments:
 
   qa:
     # This environment is when deploying from a pull request on GitHub.
-    workspace: https://adb-4301376284584187.7.azuredatabricks.net/
+    workspace: https://adb-7674599708099350.10.azuredatabricks.net
 
   production:
     workspace:
