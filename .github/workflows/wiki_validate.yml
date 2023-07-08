@@ -24,11 +24,11 @@ jobs:
 
       - uses: databricks/setup-cli@main
 
-      - run: databricks bundle deploy
+      - run: databricks bundle deploy -e qa
         working-directory: ./wikipedia_clickstream
         env:
           DATABRICKS_TOKEN: ${{ secrets.BEN_TOKEN }}
-          DATABRICKS_BUNDLE_ENV: qa
+
 
   pipeline_update:
     name: "Run pipeline update"
