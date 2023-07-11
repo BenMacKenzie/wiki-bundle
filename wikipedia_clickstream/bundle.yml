@@ -9,7 +9,7 @@
 #
 
 workspace:
-  host: https://adb-7674599708099350.10.azuredatabricks.net
+  host: https://e2-dogfood.staging.cloud.databricks.com/
 
 environments:
   development:
@@ -17,7 +17,7 @@ environments:
 
   qa:
     # This environment is when deploying from a pull request on GitHub.
-    workspace: https://adb-7674599708099350.10.azuredatabricks.net
+    workspace: https://e2-dogfood.staging.cloud.databricks.com/
 
   production:
     workspace:
