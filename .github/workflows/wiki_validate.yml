@@ -12,7 +12,8 @@ on:
     branches:
       - main
     paths:
-      - "wikipedia_clickstream/**"
+    - "**/*.yml"
+    - "**/*.py"
 
 jobs:
   deploy:
@@ -25,7 +26,7 @@ jobs:
       - uses: databricks/setup-cli@main
 
       - run: databricks bundle deploy
-        working-directory: ./wikipedia_clickstream
+        
         env:
           DATABRICKS_TOKEN: ${{ secrets.BEN_PAT }}
           DATABRICKS_BUNDLE_ENV: qa
@@ -44,7 +45,7 @@ jobs:
       - uses: databricks/setup-cli@main
 
       - run: databricks bundle run wikipedia_pipeline --refresh-all
-        working-directory: ./wikipedia_clickstream
+      
         env:
           DATABRICKS_TOKEN: ${{ secrets.BEN_PAT }}
           DATABRICKS_BUNDLE_ENV: production
