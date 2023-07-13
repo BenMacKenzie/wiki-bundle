@@ -14,7 +14,6 @@ on:
     paths:
       - "**/*.yml"
       - "**/*.py"
-
 jobs:
   deploy:
     name: "Deploy bundle"
@@ -25,8 +24,7 @@ jobs:
 
       - uses: databricks/setup-cli@main
 
-      - run: databricks bundle deploy
-        
+      - run: databricks bundle deploy 
         env:
           DATABRICKS_TOKEN: ${{ secrets.DOG_FOOD }}
           DATABRICKS_BUNDLE_ENV: qa
