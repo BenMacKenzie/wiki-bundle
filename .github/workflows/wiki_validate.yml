@@ -12,8 +12,8 @@ on:
     branches:
       - main
     paths:
-    - "**/*.yml"
-    - "**/*.py"
+      - "**/*.yml"
+      - "**/*.py"
 
 jobs:
   deploy:
@@ -48,4 +48,4 @@ jobs:
       
         env:
           DATABRICKS_TOKEN: ${{ secrets.DOG_FOOD }}
-          DATABRICKS_BUNDLE_ENV: production
+          DATABRICKS_BUNDLE_ENV: qa
