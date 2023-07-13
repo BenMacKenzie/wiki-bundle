@@ -1,0 +1,100 @@
+  bundle:
+    name: wikipedia_clickstream_dlt
+
+
+workspace:
+  host: https://adb-7674599708099350.10.azuredatabricks.net/
+
+
+
+resources:
+  pipelines:
+    wikipedia_pipeline:
+      target: "ben_dlt_wikipedia_dab_${bundle.environment}"
+
+      libraries:
+        - notebook:
+            path: ./input.py
+        - notebook:
+            path: ./wikipedia.py
+
+      configuration:
+        "bundle.environment": "${bundle.environment}"
+
+      permissions:
+        - level: CAN_VIEW
+          group_name: users
+
+environments:
+  development:
+    resources:
+      pipelines:
+        wikipedia_pipeline:
+          name: "[${bundle.environment}/${workspace.current_user.userName}] Wikipedia DLT DAB"
+
+          development: true
+
+          clusters:
+            - label: default
+              num_workers: 2
+
+  qa:
+    resources:
+      pipelines:
+        wikipedia_pipeline:
+          name: "[${bundle.environment}] Ben Wikipedia DLT DAB"
+
+          development: true
+          photon: true
+
+          clusters:
+            - label: default
+              autoscale:
+                min_workers: 2
+                max_workers: 2
+                mode: ENHANCED
+
+  production:
+    resources:
+      pipelines:
+        wikipedia_pipeline:
+          name: "[${bundle.environment}] Ben Wikipedia DLT DAB"
+
+          photon: true
+
+          clusters:
+            - label: default
+              autoscale:
+                min_workers: 2
+                max_workers: 8
+                mode: ENHANCED
+
+      jobs:
+        pipeline_schedule:
+          name: Daily refresh of production pipeline
+
+          schedule:
+            quartz_cron_expression: 6 6 11 * * ?
+            timezone_id: UTC
+
+          tasks:
+            - task_key: refresh_pipeline
+              pipeline_task:
+                pipeline_id: ${resources.pipelines.wikipedia_pipeline.id}
+
+          permissions:
+            - level: CAN_VIEW
+              group_name: users
+
+environments:
+  development:
+    default: true
+
+  qa:
+    # This environment is when deploying from a pull request on GitHub.
+    workspace: https://adb-7674599708099350.10.azuredatabricks.net/
+
+  production:
+    workspace:
+      # For demonstration purposes.
+      # host: https://my-production-workspace.cloud.databricks.com/
