@@ -39,6 +39,8 @@ environments:
               num_workers: 2
 
   qa:
+    workspace:
+      host: https://e2-dogfood.staging.cloud.databricks.com/
     resources:
       pipelines:
         wikipedia_pipeline:
