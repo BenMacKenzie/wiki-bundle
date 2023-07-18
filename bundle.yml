@@ -31,7 +31,7 @@ environments:
     resources:
       pipelines:
         wikipedia_pipeline:
-          name: "[${bundle.environment}/${workspace.current_user.userName}] Ben Wikipedia DLT DAB"
+          name: "[${bundle.environment}/${workspace.current_user.userName}] Wikipedia DLT DAB"
 
           development: true
 
