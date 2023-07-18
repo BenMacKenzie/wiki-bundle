@@ -1,5 +1,5 @@
   bundle:
-    name: wikipedia_clickstream_dlt
+  name: wikipedia_clickstream_dlt
 
 
 workspace:
@@ -8,6 +8,7 @@ workspace:
 
 
 resources:
+
   pipelines:
     wikipedia_pipeline:
       target: "ben_dlt_wikipedia_dab_${bundle.environment}"
@@ -30,7 +31,7 @@ environments:
     resources:
       pipelines:
         wikipedia_pipeline:
-          name: "[${bundle.environment}/${workspace.current_user.userName}] Wikipedia DLT DAB"
+          name: "[${bundle.environment}/${workspace.current_user.userName}] Ben Wikipedia DLT DAB"
 
           development: true
 
@@ -87,16 +88,3 @@ environments:
           permissions:
             - level: CAN_VIEW
               group_name: users
-
-environments:
-  development:
-    default: true
-
-  qa:
-    # This environment is when deploying from a pull request on GitHub.
-    workspace:  https://e2-dogfood.staging.cloud.databricks.com/
-
-  production:
-    workspace:
-      # For demonstration purposes.
-      # host: https://my-production-workspace.cloud.databricks.com/
