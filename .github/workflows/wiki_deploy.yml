@@ -10,7 +10,7 @@ on:
     branches:
       - main
     paths:
-      - "wikipedia_clickstream/**"
+      - "**/*.py"
 
 jobs:
   deploy:
@@ -25,7 +25,7 @@ jobs:
       - run: databricks bundle deploy
         working-directory: ./wikipedia_clickstream
         env:
-          DATABRICKS_TOKEN: ${{ secrets.DOGFOOD }}
+          DATABRICKS_TOKEN: ${{ secrets.DOG_FOOD }}
           DATABRICKS_BUNDLE_ENV: production
 
   pipeline_update:
@@ -43,5 +43,5 @@ jobs:
       - run: databricks bundle run wikipedia_pipeline --refresh-all
         working-directory: ./wikipedia_clickstream
         env:
-          DATABRICKS_TOKEN: ${{ secrets.DOGFOOD}}
+          DATABRICKS_TOKEN: ${{ secrets.DOG_FOOD}}
           DATABRICKS_BUNDLE_ENV: production
