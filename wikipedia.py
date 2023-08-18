@@ -52,5 +52,6 @@ def top_pages():
     dlt.read("clickstream_clean")
       .groupBy("current_page_title")
       .agg(sum("click_count").alias("total_clicks"))
-      .sort(desc("total_clicks"))
+      .sort(desc("total_clicks")
+      .limit(500))
   )
