@@ -17,8 +17,6 @@ resources:
 
       libraries:
         - notebook:
-            path: ./input_qa.py
-        - notebook:
             path: ./wikipedia.py
 
       configuration:
@@ -34,7 +32,9 @@ environments:
       pipelines:
         wikipedia_pipeline:
           name: "[${bundle.environment}/${workspace.current_user.userName}] Ben Wikipedia DLT DAB"
-
+          libraries:
+            - notebook:
+                path: ./input_qa.py
           development: true
           clusters:
             - label: default
@@ -47,7 +47,10 @@ environments:
       pipelines:
         wikipedia_pipeline:
           name: "[${bundle.environment}] Ben Wikipedia DLT DAB"
-
+          
+          libraries:
+            - notebook:
+                path: ./input_qa.py
           
           development: true
           photon: true
@@ -68,8 +71,6 @@ environments:
           libraries:
             - notebook:
                 path: ./input_production.py
-            - notebook:
-                path: ./wikipedia.py
           photon: true
 
           clusters:
