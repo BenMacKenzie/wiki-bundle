@@ -1,0 +1,47 @@
+
+name: Wikipedia Clickstream (deploy)
+
+concurrency: 1
+
+on:
+  workflow_dispatch:
+
+  push:
+    branches:
+      - main
+    paths:
+      - "wikipedia_clickstream/**"
+
+jobs:
+  deploy:
+    name: "Deploy bundle"
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: databricks/setup-cli@main
+
+      - run: databricks bundle deploy
+        working-directory: ./wikipedia_clickstream
+        env:
+          DATABRICKS_TOKEN: ${{ secrets.DOGFOOD }}
+          DATABRICKS_BUNDLE_ENV: production
+
+  pipeline_update:
+    name: "Run pipeline update"
+    runs-on: ubuntu-latest
+
+    needs:
+      - deploy
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: databricks/setup-cli@main
+
+      - run: databricks bundle run wikipedia_pipeline --refresh-all
+        working-directory: ./wikipedia_clickstream
+        env:
+          DATABRICKS_TOKEN: ${{ secrets.DOGFOOD}}
+          DATABRICKS_BUNDLE_ENV: production
