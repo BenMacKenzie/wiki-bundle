@@ -40,7 +40,6 @@ jobs:
       - uses: databricks/setup-cli@main
 
       - run: databricks bundle run wikipedia_pipeline --refresh-all
-        working-directory: ./wikipedia_clickstream
         env:
           DATABRICKS_TOKEN: ${{ secrets.DOG_FOOD}}
           DATABRICKS_BUNDLE_ENV: production
