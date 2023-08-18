@@ -17,7 +17,7 @@ resources:
 
       libraries:
         - notebook:
-            path: ./input.py
+            path: ./input_qa.py
         - notebook:
             path: ./wikipedia.py
 
@@ -36,7 +36,6 @@ environments:
           name: "[${bundle.environment}/${workspace.current_user.userName}] Ben Wikipedia DLT DAB"
 
           development: true
-
           clusters:
             - label: default
               num_workers: 2
@@ -49,6 +48,7 @@ environments:
         wikipedia_pipeline:
           name: "[${bundle.environment}] Ben Wikipedia DLT DAB"
 
+          
           development: true
           photon: true
 
@@ -65,6 +65,11 @@ environments:
         wikipedia_pipeline:
           name: "[${bundle.environment}] Ben Wikipedia DLT DAB"
 
+          libraries:
+            - notebook:
+                path: ./input_production.py
+            - notebook:
+                path: ./wikipedia.py
           photon: true
 
           clusters:
