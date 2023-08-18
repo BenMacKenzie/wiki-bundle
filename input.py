@@ -24,7 +24,7 @@ def clickstream_raw():
   # Read only 10k rows during development or validation.
   bundle_environment = spark.conf.get("bundle.environment")
   if bundle_environment in ["development", "qa"]:
-    df = df.limit(10_000)
+    df = df.limit(12_000)
 
   return df
 #
